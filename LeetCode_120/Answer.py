@@ -86,3 +86,22 @@ class Solution:
             ans[i] *= pos
             pos *= nums[i]
         return ans
+
+    # This is the LeetCode Quesion 36 Solution. [Medium]
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        check = set()
+
+        for i in range(9):
+            for j in range(9):
+                coordination = board[i][j]
+
+                if coordination != ".":
+                    if ((i, coordination) in check or
+                        (coordination, j) in check or
+                        (i // 3, j // 3, coordination) in check):
+                        return False
+                
+                    check.add((i, coordination))
+                    check.add((coordination, j))
+                    check.add((i // 3, j // 3, coordination))
+        return True

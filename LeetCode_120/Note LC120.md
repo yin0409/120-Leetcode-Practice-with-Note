@@ -933,3 +933,66 @@ The key idea:
 Store first.
 Update later.
 ```
+
+# LeetCode 36 - Valid Sudoku
+
+## Pattern
+Hash Set + Matrix Traversal
+
+## Key Takeaway
+
+The problem is NOT asking us to solve Sudoku.
+
+We only need to detect whether a number has already appeared in:
+
+- the same row
+- the same column
+- the same 3×3 box
+
+Use a Hash Set to record what has been seen.
+
+Store three kinds of information:
+
+(row, num)
+(num, col)
+(box_row, box_col, num)
+
+If any of them already exist in the set:
+
+return False
+
+Otherwise add them into the set.
+
+## Important Concept
+
+Tuple can be used as a key inside a set.
+
+Examples:
+
+(0, "5")
+→ Number 5 appeared in Row 0
+
+("5", 0)
+→ Number 5 appeared in Column 0
+
+(0, 0, "5")
+→ Number 5 appeared in Top-Left Box
+
+## Box Calculation
+
+(i // 3, j // 3)
+
+Used to determine which 3×3 box the current cell belongs to.
+
+## Common Mistakes
+
+- Trying to solve the Sudoku
+- Using "," instead of "."
+- Returning True inside the loop
+- Forgetting box validation
+
+## Complexity
+
+Time: O(1)
+
+Space: O(1)
